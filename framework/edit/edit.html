@@ -1,0 +1,18 @@
+<div class="popup"
+     dx-popup="popupOptions">
+    <div data-options="dxTemplate: { name:'info' }">
+        <form name="editForm">
+            <div class="dx-fieldset">
+                <div class="dx-field">
+                    <div class="dx-field-label" data-ng-repeat="label in formLabels">
+                        {{label.title}}: <div dx-text-box="formInput" name="inputObject" type="button" ng-model="editObject[label.property_name]"></div>
+                    </div>
+
+                </div>
+                <span dx-button="saveButton"></span>
+                <span dx-button="cancelButton"></span>
+            </div>
+        </div>
+    </div>
+</div>
+

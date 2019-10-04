@@ -1,0 +1,19 @@
+<h2>Users</h2>
+
+<div dx-button="selectUsers"></div>
+<li data-ng-repeat="user in users_vm">
+    {{user.id}}
+    {{user.customer_id}}
+    <div class="item-info test">
+        <div class="col-md-2">ID:{{user.id}}</div>
+        <div class="col-md-10">CUSTOMER ID:{{user.customer_id}}</div>
+    </div>
+</li>
+<br>
+
+<custom-list
+    table-head="headList"
+    table-body="rowList"
+    table-buttons="boolean"
+    >
+</custom-list>

@@ -1,0 +1,20 @@
+<table>
+    <tr>
+        <th data-ng-repeat="item in tableHead"> {{ item.title }}</th>
+    </tr>
+
+    <tr data-ng-repeat="data in tableBody">
+        <th data-ng-repeat="item in tableHead">
+            {{data[item.property_name]}}
+        </th>
+        <th ng-show="tableButtons" dx-button="editButton"></th>
+        <th ng-show="tableButtons" dx-button="deleteButton"></th>
+    </tr>
+</table>
+<edit
+    form-labels="formParts"
+    edit-object="editObj"
+    visible-popup="visionBoolean"
+    >
+</edit>
+
