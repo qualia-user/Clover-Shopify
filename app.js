@@ -34,11 +34,15 @@ var app = angular.module("app", ['ui.router', 'dx']);
             return query.length ? query.substr(0, query.length - 1) : query;
         };
 
+
+
     }]);
 
 
 app.controller("mainCtrl", ["$rootScope", "$scope", "$log", '$window',
     function ($rootScope, $scope, $log, $window) {
         $log.info("Angular application started!");
+        // Globalize.culture("en");
+        // $rootScope.series_type = Globalize.localize("series_type");
     }
 ]);

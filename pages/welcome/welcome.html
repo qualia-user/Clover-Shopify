@@ -1,19 +1,109 @@
-<h2>Users</h2>
+<div class="content">
 
-<div dx-button="selectUsers"></div>
-<li data-ng-repeat="user in users_vm">
-    {{user.id}}
-    {{user.customer_id}}
-    <div class="item-info test">
-        <div class="col-md-2">ID:{{user.id}}</div>
-        <div class="col-md-10">CUSTOMER ID:{{user.customer_id}}</div>
+    <h2>Line graph</h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-custom">
+                <div class="card-header">
+                    <div class="col-md-3 float-left">
+                        <div class="option">
+                            <label>{{str_series_type}}</label>
+                            <div dx-select-box="seriesTypeDataSourceChange"></div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 float-left">
+                        <div class="option">
+                            <label>{{str_interval_type}}</label>
+                            <div dx-select-box="intervalTypeDataSourceChange"></div>
+                        </div>
+                    </div>
+
+                    <div class="float-right">
+                        <div class="interval">
+
+                            <label>{{str_interval}}</label><br>
+                            <div ng-if="interval_day">
+                                <div dx-button="getDay1"></div>
+                                <div dx-button="getDay2"></div>
+                                <div dx-button="getDay3"></div>
+                                <div dx-button="getDay4"></div>
+                                <div dx-button="getDay5"></div>
+                            </div>
+
+                            <div ng-if="interval_week">
+                                <div dx-button="getWeek1"></div>
+                                <div dx-button="getWeek2"></div>
+                                <div dx-button="getWeek3"></div>
+                                <div dx-button="getWeek4"></div>
+                                <div dx-button="getWeek5"></div>
+                            </div>
+
+                            <div ng-if="interval_month">
+                                <div dx-button="getYear1"></div>
+                                <div dx-button="getYear2"></div>
+                                <div dx-button="getYear3"></div>
+                                <div dx-button="getYear4"></div>
+                                <div dx-button="getYear5"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body ">
+                    <div dx-chart="chartOptionsOne"></div>
+                </div>
+                <div class="card-footer ">
+                    <div class="legend">
+                    </div>
+                    <div class="lds-roller" >
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-info"></i> Texting...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</li>
-<br>
 
-<custom-list
-    table-head="headList"
-    table-body="rowList"
-    table-buttons="boolean"
-    >
-</custom-list>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-custom">
+                <div class="card-header">
+                    <!--<div class="col-md-3 float-left">-->
+                        <!--<div class="option">-->
+                            <!--<label>{{series_type}}</label>-->
+                            <!--<div dx-select-box="dataSourceChange"></div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+                <div class="card-body ">
+                    <div dx-chart="chartOptionsTwo"></div>
+                </div>
+                <div class="card-footer ">
+                    <div class="legend">
+                    </div>
+                    <div class="lds-roller" >
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-info"></i> Texting...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div id="chart-demo">-->
+    <!--<div id="chart" dx-chart="chartOptions"></div>-->
+    <!--<div class="options">-->
+        <!--<div class="caption">Options</div>-->
+        <!--<div class="option">-->
+            <!--<span>Series Type</span>-->
+            <!--<div dx-select-box="typesOptions"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->

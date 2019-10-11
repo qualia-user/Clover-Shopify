@@ -47,3 +47,19 @@ body{
     width: 100%;
     clear: both;
 }
+
+.card-custom {
+    /*margin: 8px;*/
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.active-button {
+    background-color: #e6e6e6;
+}
