@@ -1,7 +1,7 @@
 app.service('svcApi', ['$http', '$q', function ($http, $q) {
-    this.selectQuery_REPO = function (_sql, sqltype) {
+    this.selectQuery_REPO = function (interval, intervaltype) {
         var d = $q.defer();
-        $http.get("api/select_users.php?interval=" + _sql + "&sqltype=" + sqltype).then(success, error);
+        $http.get("api/select_users.php?interval=" + interval + "&intervaltype=" + intervaltype).then(success, error);
 
         function success(response) {
             d.resolve(response.data);
