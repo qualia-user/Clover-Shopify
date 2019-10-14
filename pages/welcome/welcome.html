@@ -2,7 +2,7 @@
 
     <h2>Line graph</h2>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="card card-custom">
                 <div class="card-header">
                     <!--<div class="col-md-3 float-left">-->
@@ -23,7 +23,7 @@
                         <div class="interval">
 
                             <label>{{str_interval}}</label><br>
-                            <div ng-if="interval_day">
+                            <!--<div ng-if="interval_day">-->
                                 <div data-ng-repeat="int in buttons.day" dx-button="{
                                     stylingMode: 'contained',
                                     type: 'normal',
@@ -32,7 +32,7 @@
                                     onClick: getInterval
                                 }">
                                 </div>
-                            </div>
+                            <!--</div>-->
                         </div>
                     </div>
                 </div>

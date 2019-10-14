@@ -12,8 +12,8 @@ app.controller("ctrl_welcome", ['$scope', 'svcApi', '$parse',  function ($scope,
                                     { valueField: "tipAmount_PP", name: "Tip Amount previous period", type: "line", point: {size: 8, color: '#c1c233'}, dashStyle: "dot"}],
             serieRefundAmount:      [{ valueField: "refundAmount", name: "Refund Amount", type: "line", point: {size: 8, color: '#00c0ef'} },
                                     { valueField: "refundAmount_PP", name: "Refund Amount Of Net previous period", type: "line", point: {size: 8, color: '#c1c233'}, dashStyle: "dot"}],
-            // serieTipPercentOfNet:   [{ valueField: "TipPercentOfNet", name: "Tip Percent Of Net", type: "line", point: {size: 8, color: '#00c0ef'} },
-            //                         { valueField: "TipPercentOfNet_PP", name: "Tip Percent Of Net previous period", type: "line", point: {size: 8, color: '#c1c233'}, dashStyle: "dot"}],
+            serieTipPercentOfNet:   [{ valueField: "TipPercentOfNet", name: "Tip Percent Of Net", type: "line", point: {size: 8, color: '#00c0ef'} },
+                                    { valueField: "TipPercentOfNet_PP", name: "Tip Percent Of Net previous period", type: "line", point: {size: 8, color: '#c1c233'}, dashStyle: "dot"}],
             // serieCreditAmount:      [{ valueField: "creditAmount", name: "Credit Amount", type: "line", point: {size: 8, color: '#00c0ef'} },
             //                         { valueField: "creditAmount_PP", name: "Credit Amount previous period", type: "line", point: {size: 8, color: '#c1c233'}, dashStyle: "dot"}]
         };
@@ -23,21 +23,22 @@ app.controller("ctrl_welcome", ['$scope', 'svcApi', '$parse',  function ($scope,
     var i = 1;
 
     $scope.buttons =
-        {
-            day: [{ text: "7 d", interval: 7 }, {text: "30 d", interval: 30}, {text: "60 d", interval: 60}, {text: "90 d", interval: 90}, {text: "1 y", interval: 365}],
-            // week: [{text: "10 w", interval: 70},{text: "30 w", interval: 210}],
-            // month: [{text: "6 m", interval: 182},{text: "12 m", interval: 365}]
-        };
+    {
+        day: [{ text: "7 d", interval: 7 }, {text: "30 d", interval: 30}, {text: "60 d", interval: 60}, {text: "90 d", interval: 90}, {text: "1 y", interval: 365}],
+        // week: [{text: "10 w", interval: 70},{text: "30 w", interval: 210}],
+        // month: [{text: "6 m", interval: 182},{text: "12 m", interval: 365}]
+    };
     $scope.interval = $scope.buttons.day[1].interval;
     $scope.intervalType = intervalType[0];
+    // $scope.interval_day = true;
     $scope.series1 = seriesArray.serieNetAmount;
     $scope.series2 = seriesArray.serieTipAmount;
     $scope.series3 = seriesArray.serieRefundAmount;
+    $scope.series4 = seriesArray.serieTipPercentOfNet;
     getDataSource($scope.interval, $scope.intervalType);
 
     $scope.chartDataSet = [];
     angular.forEach(seriesArray, function(serie, index){
-        console.log(serie, 'serie', index, 'index');
         var chartName = 'chartOptions'+i;
         var model = $parse(chartName);
         var assign_object = {
@@ -109,6 +110,11 @@ app.controller("ctrl_welcome", ['$scope', 'svcApi', '$parse',  function ($scope,
         i++;
     });
 
+    $scope.getInterval = function (e) {
+        $scope.interval = e.model.int.interval;
+        getDataSource(e.model.int.interval, $scope.intervalType);
+    };
+
     $scope.intervalTypeDataSourceChange = {
         dataSource: intervalType,
         value: intervalType[0],
@@ -141,19 +147,14 @@ app.controller("ctrl_welcome", ['$scope', 'svcApi', '$parse',  function ($scope,
             obj[seriesArray.serieRefundAmount[0].valueField] = parseFloat(row[seriesArray.serieRefundAmount[0].valueField]);
             obj[seriesArray.serieRefundAmount[1].valueField] = parseFloat(row[seriesArray.serieRefundAmount[1].valueField]);
 
-            // obj[seriesArray.serieTipPercentOfNet[0].valueField] = parseFloat(row[seriesArray.serieTipPercentOfNet[0].valueField]);
-            // obj[seriesArray.serieTipPercentOfNet[1].valueField] = parseFloat(row[seriesArray.serieTipPercentOfNet[1].valueField]);
+            obj[seriesArray.serieTipPercentOfNet[0].valueField] = parseFloat(row[seriesArray.serieTipPercentOfNet[0].valueField]);
+            obj[seriesArray.serieTipPercentOfNet[1].valueField] = parseFloat(row[seriesArray.serieTipPercentOfNet[1].valueField]);
 
             // obj[seriesArray.serieCreditAmount[0].valueField] = parseFloat(row[seriesArray.serieCreditAmount[0].valueField]);
             // obj[seriesArray.serieCreditAmount[1].valueField] = parseFloat(row[seriesArray.serieCreditAmount[1].valueField]);
             data.push(obj);
         });
         return data;
-    };
-
-    $scope.getInterval = function (e) {
-        $scope.interval = e.model.int.interval;
-        getDataSource(e.model.int.interval, $scope.intervalType);
     };
 
     // $scope.chartOptionsOne = {
